@@ -1,4 +1,4 @@
-
+/* eslint-disable no-console */
 const dotenv = require('dotenv');
 // const express = require('express');
 
@@ -23,8 +23,7 @@ const server = app.listen(port, () => {
 process.on('unhandledRejection', (err) => {
   console.log('UNHANDLED REJECTION!!!  shutting down ...');
   console.log(err.name, err.message);
-  // server.close(() => {
-  //   process.exit(1);
-  // });
+  server.close(() => {
+    process.exit(1);
+  });
 });
-

@@ -1,4 +1,5 @@
-
+/* eslint-disable consistent-return */
+/* eslint-disable no-console */
 exports.login = async (req, res, next) => {
   try {
     // const { payLoad } = req.body;
@@ -11,7 +12,3 @@ exports.login = async (req, res, next) => {
     next(error);
   }
 };
-
-
-
-

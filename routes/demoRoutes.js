@@ -9,6 +9,5 @@ const demoController = require('../controllers/demoController');
 
 // // Only admin have permission to access for the below APIs
 // router.use(authController.restrictTo('super_admin'));
-
 router.get('/login', demoController.login);
 module.exports = router;

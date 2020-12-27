@@ -1,0 +1,358 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "NLG",
+        "version": "0.0.0",
+        "title": "API",
+        "license": {
+            "name": "LamsaTech"
+        }
+    },
+    "basePath": "/",
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "securityDefinitions": {
+        "Bearer": {
+            "description": "",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "responses": {
+        "UnauthorizedError": {
+            "description": "Access token is missing or invalid"
+        }
+    },
+    "paths": {
+        "/api/v1/sync/putActivity": {
+            "put": {
+                "tags": [
+                    "Client Sync"
+                ],
+                "summary": "Client Sync",
+                "description": "Client Sync",
+                "responses": {},
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name":"syncObj",
+                        "schema":
+                        {
+                            
+                            "properties": {
+                                "payLoad": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/insertClientChanges"
+                                    }
+                                },
+                                "exampleForUpdate-payLoad": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/updateClientChanges"
+                                    }
+                                },
+                                "exampleForDelete-payLoad": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/deleteClientChanges"
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                ]
+            }
+        },
+        "/api/v1/sync/syncApi/{tableName}/{entityId}/{token}/{lastSyncDate}": {
+            "get": {
+                "tags": [
+                    "Client Sync"
+                ],
+                "summary": "Client Sync",
+                "description": "Client Sync",
+                "responses": {},
+                "parameters": [
+                        {
+                            "in": "path",
+                            "name": "tableName",
+                            "default": "users",
+                            "type": "string"
+                        },
+                        {
+                            "in": "path",
+                            "name": "entityId",
+                            "type": "string"
+                        },
+                        {
+                            "in": "path",
+                            "name": "token",
+                            "type": "string"
+                        },
+                        {
+                            "in": "path",
+                            "name": "lastSyncDate",
+                            "type": "string",
+                            "required":false
+                        }
+                ]
+            }
+        }, 
+        "/api/v1/sync/transactionSync/{tableName}/{entityId}/{token}/{lastSyncDate}/{identifier}": {
+            "get": {
+                "tags": [
+                    "Client Sync"
+                ],
+                "summary": "Client Sync",
+                "description": "Client Sync",
+                "responses": {},
+                "parameters": [
+                        {
+                            "in": "path",
+                            "name": "tableName",
+                            "default": "users",
+                            "type": "string"
+                        },
+                        {
+                            "in": "path",
+                            "name": "entityId",
+                            "type": "string"
+                        },
+                        {
+                            "in": "path",
+                            "name": "token",
+                            "type": "string"
+                        },
+                        {
+                            "in": "path",
+                            "name": "lastSyncDate",
+                            "default":"2020-05-05T4:48:00.000Z",
+                            "type": "date"
+                        },
+                        {
+                            "in": "path",
+                            "name": "identifier",
+                            "default":"userId-deviceType-GUID",
+                            "type": "string"
+                        }
+                ]
+            }
+        }
+
+    },
+
+
+
+
+
+
+
+    
+    "definitions": {
+        "insertClientChanges": {
+            "type": "object",
+            "properties": {
+                "_id":{
+                    "type": "string",
+                    "example": "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4be0"
+                },	
+                "recordId": {
+                    "type": "string",
+                    "example": "3391853a-c837-317b-93fa-3051c64e5b92"
+                },
+                "tableName": {
+                    "type": "string",
+                    "example": "scan_data_types"
+                },
+                "transactionType": {
+                    "type": "string",
+                    "example": "insert"
+                },
+                "dataBefore": {
+                    "type": "object",
+                    "example": {}
+                },
+                "dataAfter": {
+                    "type": "object",
+                    "example": {
+                        "id":"3391853a-c837-317b-93fa-3051c64e5b92",
+                        "name":"test",
+                        "description":"test",
+                        "created_at":"2020-12-21T15:15:00",
+                        "entity_id":"db207316-532b-3ac6-9f85-fcf1477cdc6f"
+                      }
+                
+                },
+                "changedProperties": {
+                    "type": "array",
+                 
+                    "items": {
+                        "type": "string",
+                        "example": "id','name','description','created_at','entity_id"
+                    }
+                },
+                "changeSource": {
+                    "type": "string",
+                    "example": "scan_data_types"
+                },
+                "creationTime":{
+                    "type": "string",
+                    "example": "2020-12-21T15:15:00.000Z"
+                },
+                "syncTo": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "example": "testClient"
+                    }
+                },
+                "entityId": {
+                    "type": "string",
+                    "example": "db207316-532b-3ac6-9f85-fcf1477cdc6f"
+                }
+
+            }
+        },
+        "updateClientChanges": {
+            "type": "object",
+            "properties": {
+                "_id":{
+                    "type": "string",
+                    "example": "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4be7"
+                },	
+                "recordId": {
+                    "type": "string",
+                    "example": "3391853a-c837-317b-93fa-3051c64e5b92"
+                },
+                "tableName": {
+                    "type": "string",
+                    "example": "scan_data_types"
+                },
+                "transactionType": {
+                    "type": "string",
+                    "example": "update"
+                },
+                "dataBefore": {
+                    "type": "object",
+                    "example": {
+                        "id":"3391853a-c837-317b-93fa-3051c64e5b92",
+                        "name":"test",
+                        "description":"test",
+                        "created_at":"2020-12-21T15:15:00",
+                        "entity_id":"db207316-532b-3ac6-9f85-fcf1477cdc6f"
+                      }
+                
+                },
+                "dataAfter": {
+                    "type": "object",
+                    "example": {
+                        "id":"3391853a-c837-317b-93fa-3051c64e5b92",
+                        "name":"testagain",
+                        "description":"testagain",
+                        "updated_at":"2020-12-21T16:15:00"
+                      }
+                
+                },
+                "changedProperties": {
+                    "type": "array",
+                 
+                    "items": {
+                        "type": "string",
+                        "example": "id','name','description','created_at','entity_id"
+                    }
+                },
+                "changeSource": {
+                    "type": "string",
+                    "example": "scan_data_types"
+                },
+                "creationTime":{
+                    "type": "string",
+                    "example": "2020-12-21T15:15:00.000Z"
+                },
+                "syncTo": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "example": "testClient"
+                    }
+                },
+                "entityId": {
+                    "type": "string",
+                    "example": "db207316-532b-3ac6-9f85-fcf1477cdc6f"
+                }
+
+            }
+        },
+        "deleteClientChanges": {
+            "type": "object",
+            "properties": {
+                "_id":{
+                    "type": "string",
+                    "example": "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4be1"
+                },	
+                "recordId": {
+                    "type": "string",
+                    "example": "3391853a-c837-317b-93fa-3051c64e5b92"
+                },
+                "tableName": {
+                    "type": "string",
+                    "example": "scan_data_types"
+                },
+                "transactionType": {
+                    "type": "string",
+                    "example": "delete"
+                },
+                "dataBefore": {
+                    "type": "object",
+                    "example":  {
+                        "id":"3391853a-c837-317b-93fa-3051c64e5b92",
+                        "name":"testagain",
+                        "description":"testagain",
+                        "created_at":"2020-12-21T15:15:00",
+                        "updated_at":"2020-12-21T16:15:00",
+                        "entity_id":"3391853f-c837-317b-93fa-3051c64e5b92"
+                    }
+                
+                },
+                "dataAfter": {
+                    "type": "object",
+                    "example": {
+                      }
+                },
+                "changedProperties": {
+                    "type": "array",
+                 
+                    "items": {
+                        "type": "string",
+                        "example": "id','name','description','created_at','entity_id"
+                    }
+                },
+                "changeSource": {
+                    "type": "string",
+                    "example": "scan_data_types"
+                },
+                "creationTime":{
+                    "type": "string",
+                    "example": "2020-12-21T15:15:00.000Z"
+                },
+                "syncTo": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "example": "testClient"
+                    }
+                },
+                "entityId": {
+                    "type": "string",
+                    "example": "db207316-532b-3ac6-9f85-fcf1477cdc6f"
+                }
+
+            }
+        }
+        
+    }
+}

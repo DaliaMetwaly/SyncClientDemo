@@ -1,13 +1,6 @@
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
-const mongoose = require('mongoose');
+
 const dotenv = require('dotenv');
 // const express = require('express');
-
-const { db } = require('./mySqlModels/index');
-const { mySQLEventTrigger } = require('./services/mySqlEventService');
-const MqService = require('./services/mqService');
-const SocketService = require('./services/socketService');
 
 dotenv.config({
   path: './config.env',
@@ -20,22 +13,6 @@ process.on('uncaughtException', (err) => {
 });
 
 const app = require('./app');
-
-// Connect the mongoDB tansaction database
-const database = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
-mongoose.connect(database, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-}).then((_con) => {
-  console.log('DB connection Successfully!');
-});
-
-db.sequelize.sync();
-
-// subscribe Consumer with rabbitmq
-MqService.consumeToReceiever();
-// MqService.consumeToSubscribers();
 
 // Start the server
 const port = process.env.PORT;
@@ -51,8 +28,3 @@ process.on('unhandledRejection', (err) => {
   // });
 });
 
-SocketService.init(server);
-// SocketService.doIt();
-
-// enable mySql Database Event Triggers from cloud server
-mySQLEventTrigger('apiqa', SocketService);

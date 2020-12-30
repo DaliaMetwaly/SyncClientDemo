@@ -52,19 +52,346 @@
                         
                 ]
             }
+        },
+        "/api/v1/demo/sync": {
+            "get": {
+                "tags": [
+                    "Client Demo"
+                ],
+                "summary": "Client Demo",
+                "description": "Client Demo",
+                "responses": {},
+                "parameters": [
+                        {
+                            "in": "query",
+                            "name": "tableName",
+                            "type": "string"
+                        },
+                        {
+                            "in": "query",
+                            "name": "entityId",
+                            "type": "string"
+                        },
+                        {
+                            "in": "query",
+                            "name": "token",
+                            "type": "string"
+                        },
+                        {
+                            "in": "query",
+                            "name": "lastSyncDate",
+                            "type": "string"
+                        },
+                        {
+                            "in": "query",
+                            "name": "pages",
+                            "type": "string"
+                        },
+                        {
+                            "in": "path",
+                            "name": "limits",
+                            "type": "string"
+                        }
+                        
+                ]
+            }
+        },
+        "/api/v1/demo/insert": {
+            "post": {
+                "tags": [
+                    "Client Demo"
+                ],
+                "summary": "Client Demo",
+                "description": "Client Demo",
+                "responses": {},
+                "parameters": [
+                        {
+                            "in": "query",
+                            "name": "tableName",
+                            "type": "string",
+                            "default":"users"
+                        },
+                        {
+                        "in": "body",
+                        "name": "record",
+                        "schema": {
+                            "$ref": "#/definitions/insertRecord"
+                          }
+                        }
+                ]
+            }
+        },
+        "/api/v1/demo/delete": {
+          "post": {
+              "tags": [
+                  "Client Demo"
+              ],
+              "summary": "Client Demo",
+              "description": "Client Demo",
+              "responses": {},
+              "parameters": [
+                      {
+                          "in": "query",
+                          "name": "tableName",
+                          "type": "string",
+                          "default":"users"
+                      },
+                      {
+                      "in": "body",
+                      "name": "record",
+                      "schema": {
+                          "$ref": "#/definitions/deleteRecord"
+                        }
+                      }
+              ]
+          }
+        },
+        "/api/v1/demo/update": {
+          "post": {
+              "tags": [
+                  "Client Demo"
+              ],
+              "summary": "Client Demo",
+              "description": "Client Demo",
+              "responses": {},
+              "parameters": [
+                      {
+                          "in": "query",
+                          "name": "tableName",
+                          "type": "string",
+                          "default":"users"
+                      },
+                      {
+                      "in": "body",
+                      "name": "record",
+                      "schema": {
+                          "$ref": "#/definitions/updateRecord"
+                        }
+                      }
+              ]
+          }
+        },
+        "/api/v1/demo/gettransactions": {
+          "get": {
+              "tags": [
+                  "Client Demo"
+              ],
+              "summary": "Client Demo",
+              "description": "Client Demo",
+              "responses": {},
+              "parameters": [ 
+                      
+              ]
+          }
+        },
+        "/api/v1/demo/getrecords": {
+          "get": {
+              "tags": [
+                  "Client Demo"
+              ],
+              "summary": "Client Demo",
+              "description": "Client Demo",
+              "responses": {},
+              "parameters": [ 
+                {
+                  "in": "query",
+                  "name": "tableName",
+                  "type": "string",
+                  "default":"users"
+                }
+              ]
+          }
+        },
+        "/api/v1/demo/putactivity": {
+          "put": {
+              "tags": [
+                  "Client Demo"
+              ],
+              "summary": "Client Demo",
+              "description": "Client Demo",
+              "responses": {},
+              "parameters": [
+                      {
+                      "in": "body",
+                      "name": "record",
+                      "schema":
+                        {
+                          "properties": {
+                          "payLoad": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/insertClientChanges"
+                              }
+                            }
+                          }
+                        }
+                    }
+              ]
+          }
         }
-       
-
     },
-
-
-
 
 
 
 
     
     "definitions": {
-       
+          "insertRecord": {
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "75912b4b-a90f-3000-8eaa-0f57b8db66a5"
+              },
+              "first_name": {
+                "type": "string",
+                "example": "Ali"
+              },
+              "last_name": {
+                "type": "string",
+                "example": "Ahmed"
+              },
+              "user_type_id": {
+                "type": "string",
+                "example": "06533e16-6873-333f-9a7e-1f974b38674d"
+              },
+              "system_user": {
+                "type": "string",
+                "example": "0"
+              },
+              "user_id": {
+                "type": "string",
+                "example": "792895000"
+              },
+              "rfid_number": {
+                "type": "string",
+                "example": "974706888"
+              },
+              "image": {
+                "type": "string",
+                "example": ""
+              },
+              "email": {
+                "type": "string",
+                "example": "AliAhmed@yahoo.com"
+              },
+              "phone": {
+                "type": "string",
+                "example": "2345678"
+              },
+              "role_id": {
+                "type": "string",
+                "example": "0"
+              },
+              "password": {
+                "type": "string",
+                "example": "123456"
+              },
+              "is_active": {
+                "type": "string",
+                "example": "1"
+              },
+              "is_user_system": {
+                "type": "string",
+                "example": "1"
+              },
+              "is_deny": {
+                "type": "string",
+                "example": "Active"
+              },
+              "created_at": {
+                "type": "string",
+                "example": "2020-12-03 11:57:05"
+              }
+               
+            }
+          },
+          "deleteRecord": {
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "75912b4b-a90f-3000-8eaa-0f57b8db66a5"
+              }
+            }
+          },
+          "updateRecord": {
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "75912b4b-a90f-3000-8eaa-0f57b8db66a5"
+              },
+              "first_name": {
+                "type": "string",
+                "example": "newAli"
+              },
+              "last_name": {
+                "type": "string",
+                "example": "newAhmed"
+              }
+            }
+          },
+          "insertClientChanges": {
+            "type": "object",
+            "properties": {
+                "_id":{
+                    "type": "string",
+                    "example": "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4be0"
+                },
+                "recordId": {
+                    "type": "string",
+                    "example": "3391853a-c837-317b-93fa-3051c64e5b92"
+                },
+                "tableName": {
+                    "type": "string",
+                    "example": "scan_data_types"
+                },
+                "transactionType": {
+                    "type": "string",
+                    "example": "insert"
+                },
+                "dataBefore": {
+                    "type": "object",
+                    "example": {}
+                },
+                "dataAfter": {
+                    "type": "object",
+                    "example": {
+                        "id":"3391853a-c837-317b-93fa-3051c64e5b92",
+                        "name":"test",
+                        "description":"test",
+                        "created_at":"2020-12-21T15:15:00",
+                        "entity_id":"db207316-532b-3ac6-9f85-fcf1477cdc6f"
+                      }
+
+                },
+                "changedProperties": {
+                    "type": "array",
+
+                    "items": {
+                        "type": "string",
+                        "example": "id','name','description','created_at','entity_id"
+                    }
+                },
+                "changeSource": {
+                    "type": "string",
+                    "example": "scan_data_types"
+                },
+                "creationTime":{
+                    "type": "string",
+                    "example": "2020-12-21T15:15:00.000Z"
+                },
+                "syncTo": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "example": "testClient"
+                    }
+                },
+                "entityId": {
+                    "type": "string",
+                    "example": "db207316-532b-3ac6-9f85-fcf1477cdc6f"
+                }
+
+            }
+          }
     }
 }

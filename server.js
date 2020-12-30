@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 // const express = require('express');
 
 dotenv.config({
@@ -13,6 +14,16 @@ process.on('uncaughtException', (err) => {
 });
 
 const app = require('./app');
+// Connect the mongoDB tansaction database
+const database = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+mongoose.connect(database, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+// eslint-disable-next-line no-unused-vars
+}).then((_con) => {
+  console.log('DB connection Successfully!');
+});
 
 // Start the server
 const port = process.env.PORT;
